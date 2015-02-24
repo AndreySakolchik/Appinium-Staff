@@ -89,11 +89,15 @@
         <label>Vacancy Status</label>
         <picklist>
             <picklistValues>
-                <fullName>rejected</fullName>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>approved</fullName>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -102,11 +106,36 @@
         <type>Picklist</type>
     </fields>
     <label>Vacancy</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>Vacancy Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Vacancies</pluralLabel>
+    <recordTypes>
+        <fullName>Request</fullName>
+        <active>true</active>
+        <label>Request record type</label>
+        <picklistValues>
+            <picklist>Vacancy_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <recordTypes>
         <fullName>Vacancy</fullName>
         <active>true</active>
@@ -114,11 +143,15 @@
         <picklistValues>
             <picklist>Vacancy_Status__c</picklist>
             <values>
-                <fullName>approved</fullName>
+                <fullName>Accepted</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>rejected</fullName>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
