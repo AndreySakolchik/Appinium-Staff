@@ -109,6 +109,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>HRM__c</fullName>
+        <externalId>false</externalId>
+        <label>HRM</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>LinkedIn__c</fullName>
         <externalId>false</externalId>
         <label>LinkedIn</label>
