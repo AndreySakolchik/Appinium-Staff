@@ -82,7 +82,7 @@
     <label>VacancyCandidate</label>
     <nameField>
         <displayFormat>VC-{00000}</displayFormat>
-        <label>VacancyCandidate Name</label>
+        <label>VacancyCandidate</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>VacancyCandidates</pluralLabel>

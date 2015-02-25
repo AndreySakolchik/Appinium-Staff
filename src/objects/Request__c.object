@@ -54,23 +54,46 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Active__c</fullName>
-        <defaultValue>true</defaultValue>
+        <fullName>Budget_Type__c</fullName>
         <externalId>false</externalId>
-        <label>Active</label>
+        <label>Budget Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Furniture</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Books</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vacancy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Party</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prof Event Participation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Certification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>HR_Manager__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>HR Manager</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>Vacancies</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Job_Title__c</fullName>
@@ -83,22 +106,12 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Maximum_Salary__c</fullName>
+        <fullName>Request_Status__c</fullName>
         <externalId>false</externalId>
-        <label>Maximum Salary</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Request_Updater_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Request Updater Status</label>
+        <label>Request Status</label>
         <picklist>
             <picklistValues>
-                <fullName>Pending</fullName>
+                <fullName>Waiting for approval</fullName>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
@@ -115,9 +128,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Subject__c</fullName>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UserViewLogic__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(HR_Manager__r.ProfileId = $User.ProfileId || $Profile.Name = &quot;General Manager (GM)&quot; , 1, 0)</formula>
+        <formula>IF(OwnerId = $User.Id || $Profile.Name = &quot;General Manager (GM)&quot; , 1, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>UserViewLogic</label>
         <precision>18</precision>
@@ -127,12 +150,13 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>Vacancy</label>
+    <label>Request</label>
     <listViews>
-        <fullName>Accepted_Vacancies</fullName>
+        <fullName>Accepted_Requests</fullName>
         <columns>NAME</columns>
         <columns>Job_Title__c</columns>
-        <columns>CREATEDBY_USER</columns>
+        <columns>Budget_Type__c</columns>
+        <columns>Subject__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UserViewLogic__c</field>
@@ -140,11 +164,11 @@
             <value>1</value>
         </filters>
         <filters>
-            <field>Request_Updater_Status__c</field>
+            <field>Request_Status__c</field>
             <operation>equals</operation>
             <value>Accepted</value>
         </filters>
-        <label>Accepted Vacancies</label>
+        <label>Accepted Requests</label>
     </listViews>
     <listViews>
         <fullName>All</fullName>
@@ -152,10 +176,11 @@
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>Pending_Vacancies</fullName>
+        <fullName>Rejected_Requests</fullName>
         <columns>NAME</columns>
         <columns>Job_Title__c</columns>
-        <columns>CREATEDBY_USER</columns>
+        <columns>Budget_Type__c</columns>
+        <columns>Subject__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UserViewLogic__c</field>
@@ -163,35 +188,36 @@
             <value>1</value>
         </filters>
         <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Pending</value>
-        </filters>
-        <label>Pending Vacancies</label>
-    </listViews>
-    <listViews>
-        <fullName>Rejected_Vacancies</fullName>
-        <columns>NAME</columns>
-        <columns>Job_Title__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>UserViewLogic__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
+            <field>Request_Status__c</field>
             <operation>equals</operation>
             <value>Rejected</value>
         </filters>
-        <label>Rejected Vacancies</label>
+        <label>Rejected Requests</label>
+    </listViews>
+    <listViews>
+        <fullName>Waiting_Requests</fullName>
+        <columns>Job_Title__c</columns>
+        <columns>NAME</columns>
+        <columns>Budget_Type__c</columns>
+        <columns>Subject__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UserViewLogic__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Request_Status__c</field>
+            <operation>equals</operation>
+            <value>Waiting for approval</value>
+        </filters>
+        <label>Waiting Requests</label>
     </listViews>
     <nameField>
-        <label>Vacancy Name</label>
+        <label>Request Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Vacancies</pluralLabel>
+    <pluralLabel>Requests</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

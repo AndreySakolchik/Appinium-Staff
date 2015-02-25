@@ -109,14 +109,15 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>HRM__c</fullName>
+        <fullName>HR_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>HRM</label>
-        <length>255</length>
-        <required>true</required>
+        <label>HR Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Candidates</relationshipName>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>LinkedIn__c</fullName>
