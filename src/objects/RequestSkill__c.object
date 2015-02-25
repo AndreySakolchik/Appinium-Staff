@@ -54,12 +54,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Candidate__c</fullName>
+        <fullName>Request__c</fullName>
         <externalId>false</externalId>
-        <label>Candidate</label>
-        <referenceTo>Candidate__c</referenceTo>
-        <relationshipLabel>CandidateSkills</relationshipLabel>
-        <relationshipName>CandidateSkills</relationshipName>
+        <label>Request</label>
+        <referenceTo>Request__c</referenceTo>
+        <relationshipLabel>RequestSkills</relationshipLabel>
+        <relationshipName>RequestSkills</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
@@ -71,21 +71,21 @@
         <externalId>false</externalId>
         <label>Skill</label>
         <referenceTo>Skill__c</referenceTo>
-        <relationshipLabel>CandidateSkills</relationshipLabel>
-        <relationshipName>CandidateSkills</relationshipName>
+        <relationshipLabel>RequestSkills</relationshipLabel>
+        <relationshipName>RequestSkills</relationshipName>
         <relationshipOrder>1</relationshipOrder>
         <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <label>CandidateSkill</label>
+    <label>RequestSkill</label>
     <nameField>
-        <displayFormat>CS-{00000}</displayFormat>
-        <label>CandidateSkill</label>
+        <displayFormat>RS-{00000}</displayFormat>
+        <label>RequestSkill</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>CandidateSkills</pluralLabel>
+    <pluralLabel>RequestSkills</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
