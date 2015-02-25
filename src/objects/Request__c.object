@@ -154,9 +154,10 @@
     <listViews>
         <fullName>Accepted_Requests</fullName>
         <columns>NAME</columns>
-        <columns>Job_Title__c</columns>
-        <columns>Budget_Type__c</columns>
         <columns>Subject__c</columns>
+        <columns>Budget_Type__c</columns>
+        <columns>Job_Title__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UserViewLogic__c</field>
@@ -177,10 +178,11 @@
     </listViews>
     <listViews>
         <fullName>Rejected_Requests</fullName>
-        <columns>NAME</columns>
-        <columns>Job_Title__c</columns>
-        <columns>Budget_Type__c</columns>
         <columns>Subject__c</columns>
+        <columns>Budget_Type__c</columns>
+        <columns>Job_Title__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UserViewLogic__c</field>
@@ -196,10 +198,11 @@
     </listViews>
     <listViews>
         <fullName>Waiting_Requests</fullName>
+        <columns>Subject__c</columns>
+        <columns>Budget_Type__c</columns>
         <columns>Job_Title__c</columns>
         <columns>NAME</columns>
-        <columns>Budget_Type__c</columns>
-        <columns>Subject__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>UserViewLogic__c</field>
