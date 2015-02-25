@@ -11,5 +11,11 @@
         <members>Vacancy__c</members>
         <name>CustomObject</name>
     </types>
+    <types>
+        <members>General Manager %28GM%29</members>
+        <members>HR Manager</members>
+        <members>Manager</members>
+        <name>Profile</name>
+    </types>
     <version>31.0</version>
 </Package>
