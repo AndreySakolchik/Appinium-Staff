@@ -18,6 +18,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Candidate__c.HR_Manager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Candidate__c.LinkedIn__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -48,19 +53,44 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Request__c.Budget_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Request__c.Request_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Request__c.UserViewLogic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Vacancy__c.Active__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Vacancy__c.HR_Manager__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Vacancy__c.Maximum_Salary__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Vacancy__c.Vacancy_Status__c</field>
+        <field>Vacancy__c.Request_Updater_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Vacancy__c.Vacancy</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vacancy__c.UserViewLogic__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
