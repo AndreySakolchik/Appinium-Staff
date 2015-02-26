@@ -93,28 +93,6 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>Request_Updater_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Request Updater Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Accepted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>UserViewLogic__c</fullName>
         <externalId>false</externalId>
         <formula>IF(HR_Manager__r.ProfileId = $User.ProfileId || $Profile.Name = &quot;General Manager (GM)&quot; , 1, 0)</formula>
@@ -139,11 +117,6 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Accepted</value>
-        </filters>
         <label>Accepted Vacancies</label>
     </listViews>
     <listViews>
@@ -162,11 +135,6 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Pending</value>
-        </filters>
         <label>Pending Vacancies</label>
     </listViews>
     <listViews>
@@ -179,11 +147,6 @@
             <field>UserViewLogic__c</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Rejected</value>
         </filters>
         <label>Rejected Vacancies</label>
     </listViews>

@@ -92,11 +92,23 @@
         <fullName>Education__c</fullName>
         <externalId>false</externalId>
         <label>Education</label>
-        <length>255</length>
-        <required>true</required>
+        <picklist>
+            <picklistValues>
+                <fullName>School</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>College</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>University</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Expected_Salary__c</fullName>

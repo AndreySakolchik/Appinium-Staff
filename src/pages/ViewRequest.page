@@ -1,0 +1,36 @@
+<apex:page showHeader="true" sidebar="true" controller="ViewRequestController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="of2" value="Subject: "/>
+                    <apex:outputField id="of2" value="{!gottenRequest.Subject__c}"/>
+                </apex:pageBlockSectionItem>                  
+                
+                <apex:pageBlockSectionItem rendered="{!gottenRequest.Budget_Type__c == 'Vacancy'}">
+                    <apex:outputLabel for="slist" value="Skills list: "/>
+                    <apex:dataList id="slist" value="{!neededSkills}" var="skill">
+                        {!skill.Name}
+                    </apex:dataList>
+                </apex:pageBlockSectionItem>  
+                <apex:pageBlockSectionItem rendered="{!gottenRequest.Budget_Type__c == 'Vacancy'}">    
+                    <apex:outputLabel for="if2" value="Maximum Salary: "/>
+                    <apex:inputField id="if2" value="{!madeVacancy.Maximum_Salary__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!gottenRequest.Budget_Type__c == 'Vacancy'}">    
+                    <apex:outputLabel for="if3" value="HRM: "/>
+                    <apex:inputField id="if3" value="{!madeVacancy.HR_Manager__c}"/>
+                </apex:pageBlockSectionItem>                   
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="of3" value="Creator: "/>
+                    <apex:outputField id="of3" value="{!gottenRequest.CreatedById}"/>
+                </apex:pageBlockSectionItem>             
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >            
+                <apex:commandButton action="{!accept}" value="Accept"/>
+                <apex:commandButton action="{!reject}" value="Reject"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
