@@ -1,0 +1,25 @@
+<apex:page controller="CandidateCtrl">
+	<apex:form>
+		
+		
+
+		<input type="file" id="photo"/>
+
+		<apex:includeScript value="{!$Resource.imgareaselect_default}"/>
+		<apex:includeScript value="{!$Resource.jquery_imgareaselect_pack}" />
+		<apex:includeScript value="{!$Resource.jquery_min}" />
+		<apex:includeScript value="{!$Resource.image}"/>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+		<script type="text/javascript">
+		$(document).ready(function () {
+		$('#photo').imgAreaSelect({
+        handles: true,
+        onSelectEnd: someFunction
+    });
+});
+		</script>
+
+	</apex:form>
+</apex:page>
