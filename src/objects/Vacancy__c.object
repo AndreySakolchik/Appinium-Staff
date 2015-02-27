@@ -66,6 +66,15 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>HR Manager</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.Profile.Name</field>
+                <operation>equals</operation>
+                <value>HR Manager</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>User</referenceTo>
         <relationshipName>Vacancies</relationshipName>
         <required>false</required>
@@ -87,7 +96,7 @@
         <externalId>false</externalId>
         <label>Maximum Salary</label>
         <precision>18</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

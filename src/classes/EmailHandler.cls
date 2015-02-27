@@ -1,6 +1,6 @@
 public class EmailHandler {
 
-   	public static void sendRequestEmail(EmailTemplate emailTemplate, User user, Request__c request) {
+    public static void sendRequestEmail(EmailTemplate emailTemplate, User user, Request__c request) {
         String subject = emailTemplate.Subject;
   		String htmlBody = emailTemplate.HtmlValue;
   		htmlBody = htmlBody.replace('{!User.Name}', user.Name);
@@ -16,18 +16,18 @@ public class EmailHandler {
      	Messaging.sendEmail(emails); 
 	}
 
- 	public static void sendApprovedRequestEmail(EmailTemplate emailTemplate, Request__c acceptedRequest, Id link, String[] args) {
-            Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
-            message.setHtmlBody(emailTemplate.HtmlValue
-                .replace(']]>', '')
-                .replace('<![CDATA[', '')
-                .replace(args[0], 'http://ap2.salesforce.com/' + link));
-            message.setTargetObjectId(acceptedRequest.CreatedById);
-            message.setSubject(args[1]);
-            message.saveAsActivity = false;
-            List<Messaging.SingleEmailMessage> acceptedEmail = new List<Messaging.SingleEmailMessage>();
-            acceptedEmail.add(message);
-            Messaging.sendEmail(acceptedEmail);
+ 	public static void sendApprovedRequestEmail(EmailTemplate emailTemplate, Vacancy__c acceptedVacancy, String[] args) {
+        Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+        message.setHtmlBody(emailTemplate.HtmlValue
+            .replace(']]>', '')
+            .replace('<![CDATA[', '')
+            .replace(args[0], URL.getSalesforceBaseUrl().toExternalForm() + '/' + acceptedVacancy.Id));
+        message.setTargetObjectId(acceptedVacancy.HR_Manager__c);
+        message.setSubject(args[1]);
+        message.saveAsActivity = false;
+        List<Messaging.SingleEmailMessage> acceptedEmail = new List<Messaging.SingleEmailMessage>();
+        acceptedEmail.add(message);
+        Messaging.sendEmail(acceptedEmail);
  	}
 
     public static void sendRejectedRequestEmail(EmailTemplate emailTemplate, Request__c rejectedRequest) { 
@@ -35,9 +35,9 @@ public class EmailHandler {
         message.setHtmlBody(emailTemplate.HtmlValue
             .replace(']]>', '')
             .replace('<![CDATA[', '')
-            .replace('{!requestLink}', 'http://ap2.salesforce.com/' + rejectedRequest.ID));
-        message.setTargetObjectId(rejectedRequest.CreatedById);
-        message.setSubject('Request was rejected');
+            .replace('{!requestLink}', URL.getSalesforceBaseUrl().toExternalForm() + '/' + rejectedRequest.ID));
+        message.setTargetObjectId(rejectedRequest.Owner.Id);
+        message.setSubject(Constants.REJECTED_REQUEST_EMAIL_SUBJECT);
         message.saveAsActivity = false;
         List<Messaging.SingleEmailMessage> rejectedEmail = new List<Messaging.SingleEmailMessage>();
         rejectedEmail.add(message);

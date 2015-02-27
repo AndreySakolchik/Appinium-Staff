@@ -19,8 +19,13 @@
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!gottenRequest.Budget_Type__c == 'Vacancy'}">    
                     <apex:outputLabel for="if3" value="HRM: "/>
-                    <apex:inputField id="if3" value="{!madeVacancy.HR_Manager__c}"/>
-                </apex:pageBlockSectionItem>                   
+                    <apex:inputField id="if3" value="{!madeVacancy.HR_Manager__c}"/>                    
+                </apex:pageBlockSectionItem>   
+                <apex:pageBlockSectionItem rendered="{!LEN(errorMsg)>0}">
+                    <apex:outputText value="" styleClass="errorMsg"/>
+                    <apex:outputText value="{!errorMsg}" styleClass="errorMsg"/>
+                </apex:pageBlockSectionItem>                 
+                
 
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel for="of3" value="Creator: "/>
@@ -28,8 +33,8 @@
                 </apex:pageBlockSectionItem>             
             </apex:pageBlockSection>
             <apex:pageBlockButtons >            
-                <apex:commandButton action="{!accept}" value="Accept"/>
-                <apex:commandButton action="{!reject}" value="Reject"/>
+                <apex:commandButton action="{!doAccept}" value="Accept"/>
+                <apex:commandButton action="{!doReject}" value="Reject"/>
             </apex:pageBlockButtons>
         </apex:pageBlock>
     </apex:form>
