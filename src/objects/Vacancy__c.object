@@ -66,6 +66,15 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>HR Manager</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.Profile.Name</field>
+                <operation>equals</operation>
+                <value>HR Manager</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>User</referenceTo>
         <relationshipName>Vacancies</relationshipName>
         <required>false</required>
@@ -87,32 +96,10 @@
         <externalId>false</externalId>
         <label>Maximum Salary</label>
         <precision>18</precision>
-        <required>false</required>
+        <required>true</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Request_Updater_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>Request Updater Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Accepted</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>UserViewLogic__c</fullName>
@@ -139,11 +126,6 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Accepted</value>
-        </filters>
         <label>Accepted Vacancies</label>
     </listViews>
     <listViews>
@@ -162,11 +144,6 @@
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Pending</value>
-        </filters>
         <label>Pending Vacancies</label>
     </listViews>
     <listViews>
@@ -179,11 +156,6 @@
             <field>UserViewLogic__c</field>
             <operation>equals</operation>
             <value>1</value>
-        </filters>
-        <filters>
-            <field>Request_Updater_Status__c</field>
-            <operation>equals</operation>
-            <value>Rejected</value>
         </filters>
         <label>Rejected Vacancies</label>
     </listViews>

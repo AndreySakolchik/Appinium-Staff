@@ -96,16 +96,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Job_Title__c</fullName>
-        <externalId>false</externalId>
-        <label>Job Title</label>
-        <length>255</length>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Request_Status__c</fullName>
         <externalId>false</externalId>
         <label>Request Status</label>
@@ -156,7 +146,6 @@
         <columns>NAME</columns>
         <columns>Subject__c</columns>
         <columns>Budget_Type__c</columns>
-        <columns>Job_Title__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -180,7 +169,6 @@
         <fullName>Rejected_Requests</fullName>
         <columns>Subject__c</columns>
         <columns>Budget_Type__c</columns>
-        <columns>Job_Title__c</columns>
         <columns>NAME</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
@@ -200,7 +188,6 @@
         <fullName>Waiting_Requests</fullName>
         <columns>Subject__c</columns>
         <columns>Budget_Type__c</columns>
-        <columns>Job_Title__c</columns>
         <columns>NAME</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
