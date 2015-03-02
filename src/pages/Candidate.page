@@ -1,25 +1,163 @@
-<apex:page controller="CandidateCtrl">
+<apex:page controller="CandidateCtrl" action="{! init }" showHeader="true" sidebar="true" docType="html-5.0">
+
+	<apex:stylesheet value="{!URLFOR($Resource.file_surs, 'style.css')}" />
+	<apex:includeScript value="{!URLFOR($Resource.file_surs, 'cropbox.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.file_surs, 'cropbox-min.js')}" />
+
+<style>
+.cropped>img {
+	margin-right: 10px;
+}
+
+.visible {
+	opacity: 0;
+}
+</style>
+
+
 	<apex:form>
-		
-		
 
-		<input type="file" id="photo"/>
+		<apex:pageBlock id="blockId">
 
-		<apex:includeScript value="{!$Resource.imgareaselect_default}"/>
-		<apex:includeScript value="{!$Resource.jquery_imgareaselect_pack}" />
-		<apex:includeScript value="{!$Resource.jquery_min}" />
-		<apex:includeScript value="{!$Resource.image}"/>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+			<apex:actionRegion>
 
-		<script type="text/javascript">
-		$(document).ready(function () {
-		$('#photo').imgAreaSelect({
-        handles: true,
-        onSelectEnd: someFunction
-    });
-});
-		</script>
+				<apex:pageBlockSection columns="1" title="Common information:">
+
+					<apex:inputField value="{!candidate.Name}" type="text" />
+					<apex:inputField value="{!candidate.Candidate_Status__c}" />
+					<apex:inputField value="{!candidate.Education__c}" />
+					<apex:inputField value="{!candidate.Expected_Salary__c}" />
+					<apex:inputField value="{!candidate.Location__c}" />
+					<apex:inputField value="{!candidate.E_mail__c}" />
+					<apex:inputField value="{!candidate.Phone__c}" />
+					<apex:inputField value="{!candidate.Skype__c}" />
+					<apex:inputField value="{!candidate.LinkedIn__c}" type="url" />
+
+				</apex:pageBlockSection>
+
+				<apex:pageBlockSection columns="3" id="skLists" title="Skills:">
+					<apex:pageBlockSectionItem>
+						<apex:selectList value="{!selectedSkillsRight}" multiselect="true">
+							<apex:selectOptions value="{!allSkills}" />
+						</apex:selectList>
+
+						<apex:pageBlockSectionItem>
+							<apex:commandButton action="{!moveRightSkills}" value=">"
+								reRender="skLists" />
+							<apex:commandButton action="{!moveLeftSkills}" value="<"
+								reRender="skLists" />
+						</apex:pageBlockSectionItem>
+					</apex:pageBlockSectionItem>
+					<apex:selectList value="{!selectedSkillsLeft}" multiselect="true">
+						<apex:selectOptions value="{!chosenSkills}" />
+					</apex:selectList>
+
+				</apex:pageBlockSection>
+
+				<apex:pageBlockSection columns="3" id="skVacancies"
+					title="Vacancies:">
+
+					<apex:selectList value="{!selectedVacanciesRight}"
+						multiselect="true">
+						<apex:selectOptions value="{!allVacancies}" />
+					</apex:selectList>
+
+					<apex:pageBlockSectionItem>
+						<apex:commandButton action="{!moveRightVacancies}" value=">"
+							reRender="skVacancies" />
+						<apex:commandButton action="{!moveLeftVacancies}" value="<"
+							reRender="skVacancies" />
+					</apex:pageBlockSectionItem>
+
+					<apex:selectList value="{!selectedVacanciesLeft}"
+						multiselect="true">
+						<apex:selectOptions value="{!chosenVacancies}" />
+					</apex:selectList>
+
+				</apex:pageBlockSection>
+				
+				
+				<apex:pageBlocksection title="Photo of the candidate" >
+					<div class="container">
+						<div class="action">
+							<input type="file" id="file" style="float: left; width: 250px" />
+							<br/>
+							<br/>
+							<div class="cropped">
+								<div class="imageBox">
+									<div class="thumbBox"></div>
+									<div class="spinner" style="display: none">Loading...</div>
+								</div>
+							</div>
+							<br/>
+							<input type="button" id="btnCrop" value="Crop" disabled = "disabled"/> 
+							<input type="button" id="btnZoomIn" value=" + " disabled = "disabled"/> 
+							<input type="button" id="btnZoomOut" value=" - " disabled = "disabled"/>
+						</div>
+					</div>
+	
+					<script type="text/javascript">
+						window.onload = function() {
+							var options = {
+								imageBox : '.imageBox',
+								thumbBox : '.thumbBox',
+								spinner : '.spinner',
+								imgSrc : 'youFoto.jpg'
+							}
+							var cropper = new cropbox(options);
+							document.querySelector('#file').addEventListener(
+									'change', function() {
+										document.querySelector('#btnCrop').disabled = "";
+										document.querySelector('#btnZoomIn').disabled = "";
+										document.querySelector('#btnZoomOut').disabled = "";
+										var reader = new FileReader();
+										reader.onload = function(e) {
+											options.imgSrc = e.target.result;
+											cropper = new cropbox(options);
+										}
+										reader.readAsDataURL(this.files[0]);
+										this.files = [];
+									})
+							document.querySelector('#btnCrop').addEventListener(
+											'click', function() {
+												document.querySelector('#btnCrop').disabled = "disabled";
+												document.querySelector('#btnZoomIn').disabled = "disabled";
+												document.querySelector('#btnZoomOut').disabled = "disabled";
+												var img = cropper.getDataURL();
+												document.querySelector('.imageBox').style.width = '0';
+												document.querySelector('.imageBox').style.height = '0';
+												document.querySelector('.cropped').innerHTML += '<img id="croppedImg" src="'+img+'">';
+												
+											})
+							document.querySelector('#btnZoomIn').addEventListener(
+									'click', function() {
+										cropper.zoomIn();
+									})
+							document.querySelector('#btnZoomOut').addEventListener(
+									'click', function() {
+										cropper.zoomOut();
+									})
+						};
+					</script>
+					
+					<apex:actionFunction action="{! doAttachedPhoto }" name="attachedPhoto" reRender="blockId">
+						<apex:param name="myParam" value="" />
+					</apex:actionFunction>
+
+				</apex:pageBlocksection>
+
+				<apex:commandButton value="Save" id="saveButton" onclick="attachedPhoto(document.querySelector('#croppedImg').src); return false;"/>
+				<br></br>
+
+			</apex:actionRegion>
+
+			<h>Attach candidates resume:</h>
+			<apex:inputfile value="{! AttachedFile.body }"
+				filename="{! AttachedFile.name }"></apex:inputfile>
+
+
+		</apex:pageBlock>
 
 	</apex:form>
+
 </apex:page>
